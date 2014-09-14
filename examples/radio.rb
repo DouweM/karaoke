@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# This script listens to the specified audio stream and prints the song's lyrics.
+# This script listens to the specified radio stream and prints the lyrics for the song that's currently playing.
 
 require "karaoke"
 require "shoutout"
@@ -20,8 +20,13 @@ stream.metadata_change do |metadata|
   puts "Now playing: #{metadata.now_playing}"
   puts
 
-  lyrics = Karaoke.lyrics(metadata.now_playing)
-  puts lyrics || "Lyrics not found."
+  song = Karaoke.search(metadata.now_playing)
+  if song
+    puts "Lyrics from #{song.lyrics_url}:"
+    puts song.lyrics
+  else
+    puts "Lyrics not found."
+  end
 
   puts
   puts
