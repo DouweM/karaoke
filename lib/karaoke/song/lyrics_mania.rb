@@ -10,19 +10,25 @@ module Karaoke
       def artist
         return @artist if defined?(@artist)
 
-        @artist = data.match(/cf_page_artist = "([^"]+)";/)[1]
+        el = document.css(".lyrics-nav hgroup h3").first
+        return @artist = nil unless el
+
+        @artist = el.text
       end
 
       def title
         return @title if defined?(@title)
 
-        @title = data.match(/cf_page_song = "([^"]+)";/)[1]
+        el = document.css(".lyrics-nav hgroup h2").first
+        return @title = nil unless el
+
+        @title = el.text.match("^(.+?) lyrics$")[1]
       end
 
       def lyrics
         return @lyrics if defined?(@lyrics)
 
-        el = document.css(".lyrics-body").first
+        el = document.css(".lyrics-body").first || document.css(".lyrics .col-left").first
         return @lyrics = nil unless el
 
         el.css("div").remove
