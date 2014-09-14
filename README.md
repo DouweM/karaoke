@@ -36,7 +36,7 @@ lyrics = Karaoke.lyrics("Armin van Buuren - This Is What It Feels Like")
 # => "Nobody here knocking at my door\n" and so on.
 
 # Behind the scenes, karaoke searches Google to find results on any of these sites:
-# (Rap)Genius, MetroLyrics, Lyricsfreak, AZLyrics, DirectLyrics and LyricsMania
+# (Rap)Genius, MetroLyrics, Lyricsfreak, AZLyrics, DirectLyrics, LyricsMania and LimitlessLyrics
 # Next, karaoke reads the lyrics from the highest ranked Google search result.
 
 # If, for whatever reason, you want access to all of the found lyrics
